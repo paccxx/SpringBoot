@@ -1,0 +1,44 @@
+server:
+  port: 8902
+
+# ?????
+spring:
+  application:
+    name: Chapter2
+  config:
+    activate:
+      on-profile: dev
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.chapter2.mapper
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/learn_spring_dev?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/learn_spring_prod?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
