@@ -1,10 +1,10 @@
 server:
-  port: 8901
+  port: 8902
 
 # ?????
 spring:
   application:
-    name: Chapter1
+    name: Chapter2
   config:
     activate:
       on-profile: dev
@@ -17,7 +17,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.chapter1.mapper
+  type-aliases-package: com.example.chapter2.mapper
 
 ---
 

@@ -1,35 +1,30 @@
-package com.example.chapter1.controller;
+package com.example.chapter2.controller;
 
-import com.example.chapter1.domain.UserData;
+import com.example.chapter2.bean.dto.DoLoginDto;
+import com.example.chapter2.bean.vo.ResultVo;
+import com.example.chapter2.service.IUserService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "home")
-    public String toLoginPage(Model model, @ModelAttribute UserData user) {
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        List<String> usernames = new ArrayList<>();
-        usernames.add("LiSa");
-        usernames.add("Joey");
-        usernames.add("Sam");
-        model.addAttribute("user", user);
-        model.addAttribute("usernames", usernames);
-        model.addAttribute("pageTitle", "HomePage");
-        return "home.html";
-    }
+    @Resource
+    private IUserService userService;
 
     @GetMapping(value = "login")
     public String toLoginPage() {
         return "login.html";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "doLogin")
+    public ResultVo doLogin(@RequestBody DoLoginDto doLoginDto) {
+        return userService.doLogin(doLoginDto);
     }
 
 }
