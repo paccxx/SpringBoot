@@ -1,4 +1,4 @@
-package com.spring.boot.learn.domain;
+package com.pactera.spring.boot.learn.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pactera.spring.boot.learn.mapper.UserMapper">
+    <resultMap id="UserResult" type="com.pactera.spring.boot.learn.bean.vo.UserVO">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <result property="avatar" column="avatar"/>
+    </resultMap>
+    <sql id="selectUserSql">
+        SELECT id, name, age, email, avatar FROM user
+    </sql>
+    <select id="queryUserList" resultMap="UserResult">
+        <include refid="selectUserSql"/>
+        <where>
+            <if test="title != null">
+                AND name like #{name}
+            </if>
+            <if test="email != null">
+                AND email like #{email}
+            </if>
+            <if test="age != null">
+                AND age = #{age}
+            </if>
+        </where>
+    </select>
+    <select id="getUser" resultType="com.pactera.spring.boot.learn.bean.vo.UserVO">
+        <include refid="selectUserSql"/>
+        WHERE id = #{id}
+    </select>
+    <insert id="addUser">
+        INSERT INTO user (id, name, age, email, avatar) VALUES
+            (#{id}, #{name}, #{age}, #{email}, #{avatar})
+    </insert>
+    <update id="updateUser">
+        UPDATE user
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="age != null">
+                age=#{age},
+            </if>
+            <if test="email != null">
+                email=#{email},
+            </if>
+            <if test="avatar != null">
+                avatar=#{avatar}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="delUser">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+</mapper>

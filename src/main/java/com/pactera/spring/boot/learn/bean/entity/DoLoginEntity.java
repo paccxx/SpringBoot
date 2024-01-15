@@ -1,4 +1,4 @@
-package com.spring.boot.learn.bean.vo;
+package com.pactera.spring.boot.learn.bean.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResultVo {
-    private boolean result;
+public class DoLoginEntity {
+    private String username;
+    private String password;
 }

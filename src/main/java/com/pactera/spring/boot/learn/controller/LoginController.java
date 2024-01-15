@@ -1,8 +1,8 @@
-package com.spring.boot.learn.controller;
+package com.pactera.spring.boot.learn.controller;
 
-import com.spring.boot.learn.bean.dto.DoLoginDto;
-import com.spring.boot.learn.bean.vo.ResultVo;
-import com.spring.boot.learn.service.IUserService;
+import com.pactera.spring.boot.learn.bean.dto.DoLoginDTO;
+import com.pactera.spring.boot.learn.bean.vo.ResultVO;
+import com.pactera.spring.boot.learn.service.IUserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping(value = "doLogin")
-    public ResultVo doLogin(@RequestBody DoLoginDto doLoginDto) {
+    public ResultVO doLogin(@RequestBody DoLoginDTO doLoginDto) {
         return userService.doLogin(doLoginDto);
     }
 

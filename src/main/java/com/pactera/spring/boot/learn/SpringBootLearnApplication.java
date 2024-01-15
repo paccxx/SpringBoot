@@ -1,4 +1,4 @@
-package com.spring.boot.learn;
+package com.pactera.spring.boot.learn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.spring.boot.learn;
+package com.pactera.spring.boot.learn;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
