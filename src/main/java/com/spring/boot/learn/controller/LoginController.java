@@ -1,8 +1,8 @@
-package com.example.chapter2.controller;
+package com.spring.boot.learn.controller;
 
-import com.example.chapter2.bean.dto.DoLoginDto;
-import com.example.chapter2.bean.vo.ResultVo;
-import com.example.chapter2.service.IUserService;
+import com.spring.boot.learn.bean.dto.DoLoginDto;
+import com.spring.boot.learn.bean.vo.ResultVo;
+import com.spring.boot.learn.service.IUserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
