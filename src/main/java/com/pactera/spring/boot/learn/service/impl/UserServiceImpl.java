@@ -3,13 +3,15 @@ package com.pactera.spring.boot.learn.service.impl;
 import com.pactera.spring.boot.learn.bean.dto.DoLoginDTO;
 import com.pactera.spring.boot.learn.bean.dto.UserDTO;
 import com.pactera.spring.boot.learn.bean.entity.DoLoginEntity;
-import com.pactera.spring.boot.learn.bean.vo.ResultVO;
 import com.pactera.spring.boot.learn.bean.vo.UserVO;
 import com.pactera.spring.boot.learn.domain.UserData;
+import com.pactera.spring.boot.learn.exception.ServiceException;
 import com.pactera.spring.boot.learn.mapper.UserMapper;
 import com.pactera.spring.boot.learn.service.IUserService;
 import jakarta.annotation.Resource;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +23,10 @@ public class UserServiceImpl implements IUserService {
     @Resource
     UserMapper userMapper;
 
-    public ResultVO doLogin(DoLoginDTO doLoginDto) {
+    public boolean doLogin(DoLoginDTO doLoginDto) {
         DoLoginEntity doLoginEntity = new DoLoginEntity("user1","Pswd123!@#");
         UserData userData = new UserData(doLoginEntity.getUsername(), doLoginEntity.getPassword());
-        boolean flg = userData.checkLogin(doLoginDto.getUsername(), doLoginDto.getPassword());
-        return new ResultVO(flg);
+        return userData.checkLogin(doLoginDto.getUsername(), doLoginDto.getPassword());
     }
 
     @Override
@@ -35,30 +36,32 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Cacheable("userCache")
     public UserVO getUser(Long id) {
         log.info("getUser:{}", id);
         return userMapper.getUser(id);
     }
 
     @Override
-    public ResultVO addUser(UserDTO userDto) {
+    public void addUser(UserDTO userDto) {
         log.info("addUser:{}", userDto);
+        if("admin".equals(userDto.getName())) {
+            throw new ServiceException("insertUser 抛出的自定义异常");
+        }
         userMapper.addUser(userDto);
-        return new ResultVO(true);
     }
 
     @Override
-    public ResultVO updateUser(UserDTO userDto) {
+    @CacheEvict("userCache")
+    public void updateUser(UserDTO userDto) {
         log.info("updateUser:{}", userDto);
         userMapper.updateUser(userDto);
-        return new ResultVO(true);
     }
 
     @Override
-    public ResultVO delUser(Long id) {
+    public void delUser(Long id) {
         log.info("delUser:{}", id);
         userMapper.delUser(id);
-        return new ResultVO(true);
     }
 
 }
