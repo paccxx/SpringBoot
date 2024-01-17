@@ -9,18 +9,18 @@
         <result property="avatar" column="avatar"/>
     </resultMap>
     <sql id="selectUserSql">
-        SELECT id, name, age, email, avatar FROM user
+        SELECT id, name, age, email, avatar FROM "user"
     </sql>
     <select id="queryUserList" resultMap="UserResult">
         <include refid="selectUserSql"/>
         <where>
-            <if test="title != null">
+            <if test="name != null">
                 AND name like #{name}
             </if>
             <if test="email != null">
                 AND email like #{email}
             </if>
-            <if test="age != null">
+            <if test="age != null and age > 0">
                 AND age = #{age}
             </if>
         </where>
@@ -30,8 +30,8 @@
         WHERE id = #{id}
     </select>
     <insert id="addUser">
-        INSERT INTO user (id, name, age, email, avatar) VALUES
-            (#{id}, #{name}, #{age}, #{email}, #{avatar})
+        INSERT INTO "user" (name, age, email, avatar)
+        VALUES (#{name}, #{age}, #{email}, #{avatar})
     </insert>
     <update id="updateUser">
         UPDATE user
@@ -52,6 +52,6 @@
         WHERE id = #{id}
     </update>
     <delete id="delUser">
-        DELETE FROM user WHERE id = #{id}
+        DELETE FROM "user" WHERE id = #{id}
     </delete>
 </mapper>

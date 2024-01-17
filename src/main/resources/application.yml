@@ -1,10 +1,9 @@
 server:
-  port: 8902
+  port: 8900
 
-# ?????
 spring:
   application:
-    name: Chapter2
+    name: SpringBootLearn
   config:
     activate:
       on-profile: dev
@@ -17,7 +16,13 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.chapter2.mapper
+  type-aliases-package: com.pactera.spring.boot.learn.mapper
+
+logging:
+  level:
+    root: WARN
+    org.springframework: INFO
+    com.pactera.spring.boot.learn: DEBUG
 
 ---
 
@@ -26,10 +31,10 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.10.149.52:3307/learn_spring_dev?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/learn_spring_dev?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: learn_spring_dev
+    password: learn_spring_dev
 
 ---
 

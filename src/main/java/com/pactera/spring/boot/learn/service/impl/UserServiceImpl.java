@@ -4,8 +4,8 @@ import com.pactera.spring.boot.learn.bean.dto.DoLoginDTO;
 import com.pactera.spring.boot.learn.bean.dto.UserDTO;
 import com.pactera.spring.boot.learn.bean.entity.DoLoginEntity;
 import com.pactera.spring.boot.learn.bean.vo.ResultVO;
-import com.pactera.spring.boot.learn.domain.UserData;
 import com.pactera.spring.boot.learn.bean.vo.UserVO;
+import com.pactera.spring.boot.learn.domain.UserData;
 import com.pactera.spring.boot.learn.mapper.UserMapper;
 import com.pactera.spring.boot.learn.service.IUserService;
 import jakarta.annotation.Resource;
@@ -37,24 +37,27 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserVO getUser(Long id) {
         log.info("getUser:{}", id);
-        return null;
+        return userMapper.getUser(id);
     }
 
     @Override
     public ResultVO addUser(UserDTO userDto) {
         log.info("addUser:{}", userDto);
+        userMapper.addUser(userDto);
         return new ResultVO(true);
     }
 
     @Override
     public ResultVO updateUser(UserDTO userDto) {
         log.info("updateUser:{}", userDto);
+        userMapper.updateUser(userDto);
         return new ResultVO(true);
     }
 
     @Override
     public ResultVO delUser(Long id) {
         log.info("delUser:{}", id);
+        userMapper.delUser(id);
         return new ResultVO(true);
     }
 
