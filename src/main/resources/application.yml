@@ -38,8 +38,8 @@ spring:
 
 minio:
   endpoint: http://10.113.96.51:9000
-  access-key: 4s8eAooWBbZmUkpEl5ww
-  secret-key: phHPz9XPoPTE0BUxtYgovsz5gLGgNAks3rXuXlS9
+  access-key: pLrcb24FmMRpfuZ9CEvg
+  secret-key: ZJtRiu0Pg9vnylP0lKLS5hHOfWVGW8EgIFrB4enH
   bucket: learn
 
 ---
@@ -53,3 +53,9 @@ spring:
     url: jdbc:mysql://10.10.149.52:3307/learn_spring_prod?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
+
+minio:
+  endpoint: http://10.113.96.51:9000
+  access-key: pLrcb24FmMRpfuZ9CEvg
+  secret-key: ZJtRiu0Pg9vnylP0lKLS5hHOfWVGW8EgIFrB4enH
+  bucket: learn
