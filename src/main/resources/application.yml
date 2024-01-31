@@ -36,6 +36,12 @@ spring:
     username: learn_spring_dev
     password: learn_spring_dev
 
+minio:
+  endpoint: http://10.113.96.51:9000
+  access-key: 4s8eAooWBbZmUkpEl5ww
+  secret-key: phHPz9XPoPTE0BUxtYgovsz5gLGgNAks3rXuXlS9
+  bucket: learn
+
 ---
 
 spring:
